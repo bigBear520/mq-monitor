@@ -36,7 +36,7 @@ func (r *Monitor) Run() {
 	monitorRabbitMq(r.topic)
 }
 
-func monitorRabbitMq(topic base.MessageQueueTopic) interface{} {
+func monitorRabbitMq(topic base.MessageQueueTopic) {
 	info := getRabbitmqInfo(topic)
 	unackConut := info["messages_unacknowledged"]
 	i := info["messages_count"]
@@ -46,10 +46,9 @@ func monitorRabbitMq(topic base.MessageQueueTopic) interface{} {
 	if unackConut == 0 && messageCount > 0 {
 		noticeInfo := " 队列消费异常，请检查：{}"
 		message.SendMessage(noticeInfo, 1)
-
 	}
 
-	return nil
+	return
 }
 func getRabbitmqInfo(topic base.MessageQueueTopic) map[string]interface{} {
 	var result map[string]interface{}

@@ -9,6 +9,8 @@ import (
 func SendMessage(noticeInfo string, noticeType int8) {
 	switch noticeType {
 	case 1:
+	default:
+		sendDing(noticeInfo)
 
 	}
 }
