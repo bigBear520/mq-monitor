@@ -1,4 +1,4 @@
-package message
+package notice
 
 import (
 	"github.com/CodyGuo/dingtalk"

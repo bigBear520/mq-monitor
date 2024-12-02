@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bigBear520/mq-monitor/executor"
-	"github.com/bigBear520/mq-monitor/message"
+	"github.com/bigBear520/mq-monitor/notice"
 	"io"
 	"net/http"
 	"strings"
@@ -45,7 +45,7 @@ func monitorRabbitMq(topic base.MessageQueueTopic) {
 	// 看当前unack是否为0， message是否为0，上一次的 unack是否为0 ，
 	if unackConut == 0 && messageCount > 0 {
 		noticeInfo := " 队列消费异常，请检查：{}"
-		message.SendMessage(noticeInfo, 1)
+		notice.SendMessage(noticeInfo, 1)
 	}
 
 	return

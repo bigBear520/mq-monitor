@@ -6,13 +6,20 @@ type IMessageQueue interface {
 }
 
 type MessageQueueTopic struct {
-	MqType      string
-	Url         string
-	UserName    string
-	Pass        string
+	MqType   string
+	Url      string
+	UserName string
+	Pass     string
+	// 端口
+	TopicList []Queue
+}
+
+type Queue struct {
 	Topic       string //监控的队列
 	Cron        string // 定时任务执行周期
 	TaskType    string `default:"consuming"` // 监控的类型，目前就是有没有在消费
 	AdminPort   int16  `default:"15672"`     // 端口
-	VirtualHost string `default:"/"`         // 端口
+	VirtualHost string `default:"/"`
 }
+
+var MqServeList = make([]MessageQueueTopic, 10)
