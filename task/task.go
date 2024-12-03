@@ -25,7 +25,6 @@ func AddTask(topic base.MessageQueueTopic) {
 		monitor := newMonitor(topic, queue)
 		// 定时任务
 		_ = executor.CronExecutor.AddJob(queue.Cron, monitor)
-		monitor.Run()
 	}
 
 }
@@ -62,13 +61,13 @@ func monitorRabbitMq(topic base.MessageQueueTopic, queue base.Queue) {
 		log.Println("获取rabbitmq信息失败失败")
 		return
 	}
-	unackConut := info["messages_unacknowledged"]
+	unackConut := int64(info["messages_unacknowledged"].(float64))
 	i := info["messages"] //todo 或者用 messages_ready？
 	messageCount := int64(i.(float64))
 	consumers := info["consumers"]
 	log.Println("consumers:", consumers)
 
-	// 看当前unack是否为0， message是否为0，上一次的 unack是否为0 ，
+	// 看当前unack是否为0， message是否为0
 	if unackConut == 0 && messageCount > 0 {
 		log.Println("开始通知异常情况")
 		noticeInfo := "队列消费异常，请检查：{}"

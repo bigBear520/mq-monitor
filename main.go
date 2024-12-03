@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/bigBear520/mq-monitor/base"
+	"github.com/bigBear520/mq-monitor/executor"
 	"github.com/bigBear520/mq-monitor/task"
 	"github.com/spf13/viper"
 	"log"
@@ -14,12 +15,12 @@ func main() {
 	for i := range list {
 		task.AddTask(list[i])
 	}
-	//entries := executor.CronExecutor.Entries()
-	//if len(entries) > 0 {
-	//	executor.CronExecutor.Run()
-	//} else {
-	//	log.Println("no usable task in config files, please check the config file ")
-	//}
+	entries := executor.CronExecutor.Entries()
+	if len(entries) > 0 {
+		executor.CronExecutor.Run()
+	} else {
+		log.Println("no usable task in config files, please check the config file ")
+	}
 
 }
 
