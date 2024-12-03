@@ -9,7 +9,7 @@
       "queueList": [
         {
           "topic": "material.analysis.new",
-          "cron": "0 5/30 * * * ?",
+          "cron": "0/10 * * * * ?",
           "taskType": 1,
           "virtualHost": "/"
         }

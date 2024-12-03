@@ -2,24 +2,24 @@ package main
 
 import (
 	"github.com/bigBear520/mq-monitor/base"
-	"github.com/bigBear520/mq-monitor/executor"
 	"github.com/bigBear520/mq-monitor/task"
 	"github.com/spf13/viper"
 	"log"
 )
 
 func main() {
-
-	//todo 解析配置文件 暂定json格式
+	//配置文件 暂定json格式
 	list := base.MqServeList
 	log.Println(list)
 	for i := range list {
 		task.AddTask(list[i])
 	}
-	entries := executor.CronExecutor.Entries()
-	if len(entries) > 0 {
-		executor.CronExecutor.Run()
-	}
+	//entries := executor.CronExecutor.Entries()
+	//if len(entries) > 0 {
+	//	executor.CronExecutor.Run()
+	//} else {
+	//	log.Println("no usable task in config files, please check the config file ")
+	//}
 
 }
 

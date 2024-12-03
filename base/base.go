@@ -20,6 +20,8 @@ type Queue struct {
 	Cron        string `json:"cron"`                         // 定时任务执行周期
 	TaskType    string `json:"taskType" default:"consuming"` // 监控的类型，目前就是有没有在消费
 	VirtualHost string `json:"virtualHost" default:"/"`
+	// notice
+	Notice map[string]interface{} `json:"notice"`
 }
 
 var MqServeList = make([]MessageQueueTopic, 10)
