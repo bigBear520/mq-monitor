@@ -12,8 +12,8 @@ func main() {
 
 	//todo 解析配置文件 暂定json格式
 	list := base.MqServeList
+	log.Println(list)
 	for i := range list {
-
 		task.AddTask(list[i])
 	}
 	entries := executor.CronExecutor.Entries()

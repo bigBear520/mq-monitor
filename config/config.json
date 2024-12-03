@@ -1,5 +1,19 @@
 {
   "config": [
-
+    {
+      "mqType": "rabbitmq",
+      "url": "127.0.0.1",
+      "userName": "root",
+      "pass": "root",
+      "adminPort": "15672",
+      "queueList": [
+        {
+          "topic": "material.analysis.new",
+          "cron": "0 5/30 * * * ?",
+          "taskType": 1,
+          "virtualHost": "/"
+        }
+      ]
+    }
   ]
 }
